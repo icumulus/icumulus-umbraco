@@ -1,4 +1,4 @@
-﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Web.Common.PublishedModels;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 @{
 	Layout = null;
@@ -48,7 +48,7 @@
 		<div class="container-fluid footer">
 			<div class="container">
 
-                @Model.Value("footerText")
+                @Model.Value("footerText", fallback: Fallback.ToAncestors)
 
 			</div>
 		</div>
