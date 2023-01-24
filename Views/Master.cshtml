@@ -1,4 +1,4 @@
-@using Umbraco.Cms.Web.Common.PublishedModels;
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 @{
 	Layout = null;
@@ -20,25 +20,21 @@
 		<!-- Navigation -->
 		<div class="container">
 			<nav class="navbar navbar-expand navbar-light">
-				<a class="navbar-brand font-weight-bold" href="index.html">UmbracoTV</a>
+				<a class="navbar-brand font-weight-bold" href="/">iCumulus</a>
 				<!-- Links -->
-				<ul class="navbar-nav">
-					<li class="nav-item">
-					    <a class="nav-link" href="Contentpage-Simple.html">Simple Content Page</a>
-					</li>
-					<li class="nav-item">
-					    <a class="nav-link" href="Contentpage-Advanced.html">Advanced Content Page</a>
-                    </li>
-                    <li class="nav-item">
-					    <a class="nav-link" href="Blog.html">Blog</a>
-                    </li>
-                    <li class="nav-item">
-					    <a class="nav-link" href="Contentpage2.html">The Team</a>
-					</li>
-					<li class="nav-item">
-					    <a class="nav-link" href="Contactpage.html">Contact</a>
-					</li>
-				</ul>
+                @{
+                	var selection = Umbraco.ContentAtRoot().FirstOrDefault()
+                    .Children()
+                    .Where(x => x.IsVisible());
+                }
+                <ul class="navbar-nav">
+                	@foreach (var item in selection)
+                	{
+                		<li class="nav-item">
+                			<a class="nav-link" href="@item.Url()">@item.Name()</a>
+                		</li>
+                	}
+                </ul>				
 			</nav>
 		</div>
 
